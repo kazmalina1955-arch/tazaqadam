@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>TazaQadam | Личный кабинет</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to bottom right, #e8f5e9, #e0f2f1);
+}
+
+.header {
+    background: linear-gradient(to right, #4caf50, #26a69a);
+    color: white;
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px;
+    margin-bottom: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+.stat-box {
+    background: #f1f8f6;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.status {
+    padding: 5px 12px;
+    border-radius: 10px;
+    font-size: 12px;
+    background: #fff3cd;
+    display: inline-block;
+}
+
+.price {
+    font-weight: bold;
+    color: #2e7d32;
+}
+</style>
+
+<script>
+window.onload = function() {
+    const params = new URLSearchParams(window.location.search);
+
+    const name = params.get("username");
+    const volume = params.get("volume");
+    const wastes = params.getAll("waste");
+
+    if(name){
+        document.getElementById("username").innerText = name;
+    }
+
+    if(volume){
+        document.getElementById("volume").innerText = volume + " кг";
+    }
+
+    if(wastes.length > 0){
+        document.getElementById("wasteTypes").innerText = wastes.join(", ");
+    }
+
+    // Автоматический расчёт цены
+    if(volume){
+        const price = volume * 150;
+        document.getElementById("price").innerText = price + " ₸";
+    }
+}
+</script>
+
+</head>
+<body>
+
+<div class="header">
+    <div><strong>TazaQadam</strong></div>
+    <div>Добро пожаловать, <span id="username">Пользователь</span></div>
+</div>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Статистика</h2>
+        <div class="stat-box">Сдано вторсырья: 0 кг</div>
+        <div class="stat-box">Общий доход: 0 ₸</div>
+        <div class="stat-box">Последний вывоз: —</div>
+    </div>
+
+    <div class="card">
+        <h2>Мои заявки</h2>
+
+        <p>
+        <strong id="wasteTypes">Тип отходов</strong><br>
+        Объём: <span id="volume">0 кг</span><br>
+        Дата подачи: Сегодня<br>
+        Ожидаемая дата вывоза: —<br>
+        Статус: <span class="status">На рассмотрении</span><br>
+        Цена: <span class="price" id="price">0 ₸</span>
+        </p>
+
+    </div>
+
+    <div class="card">
+        <h2>Уведомления</h2>
+        <p>Принята заявка на рассмотрение.</p>
+    </div>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>TazaQadam | Подача заявки</title>
+<style>
+body {
+    margin: 0;
+    font-family: Arial;
+    background: linear-gradient(to bottom right, #e8f5e9, #e0f2f1);
+}
+.header {
+    background: linear-gradient(to right, #4caf50, #26a69a);
+    padding: 20px 40px;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+.container {
+    max-width: 700px;
+    margin: 50px auto;
+}
+.card {
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    margin-bottom: 25px;
+}
+h2 {
+    margin-top: 0;
+}
+label {
+    display: block;
+    margin-top: 18px;
+    font-weight: 500;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border-radius: 12px;
+    border: 1px solid #cfd8dc;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+.checkbox-group label {
+    display: block;
+    font-weight: normal;
+    margin-bottom: 6px;
+}
+.submit-button {
+    margin-top: 25px;
+    width: 100%;
+    padding: 14px;
+    border-radius: 15px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    background: linear-gradient(to right, #43a047, #1de9b6);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.submit-button:hover {
+    opacity: 0.9;
+}
+.role-buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+.role-buttons button {
+    padding: 12px 25px;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+    transition: 0.3s;
+}
+.role-buttons button.active {
+    background: linear-gradient(to right, #43a047, #1de9b6);
+    color: white;
+}
+.role-buttons button.inactive {
+    background: #cfd8dc;
+    color: #555;
+}
+.hidden { display: none; }
+</style>
+<script>
+function selectRole(role) {
+    document.getElementById("form-user").classList.add("hidden");
+    document.getElementById("form-company").classList.add("hidden");
+    if(role === "user") {
+        document.getElementById("form-user").classList.remove("hidden");
+        document.getElementById("btn-user").classList.add("active");
+        document.getElementById("btn-user").classList.remove("inactive");
+        document.getElementById("btn-company").classList.add("inactive");
+        document.getElementById("btn-company").classList.remove("active");
+    } else {
+        document.getElementById("form-company").classList.remove("hidden");
+        document.getElementById("btn-company").classList.add("active");
+        document.getElementById("btn-company").classList.remove("inactive");
+        document.getElementById("btn-user").classList.add("inactive");
+        document.getElementById("btn-user").classList.remove("active");
+    }
+}
+</script>
+</head>
+<body>
+
+<div class="header">TazaQadam — Подача заявки</div>
+
+<div class="container">
+
+<div class="role-buttons">
+    <button id="btn-user" class="active" onclick="selectRole('user')">Я сдаю отходы</button>
+    <button id="btn-company" class="inactive" onclick="selectRole('company')">Я приёмщик</button>
+</div>
+
+<!-- Форма пользователя -->
+<div id="form-user" class="card">
+<h2>Заявка на вывоз отходов</h2>
+<form action="user-cabinet.html" method="get">
+<label>Область Казахстана</label>
+<select name="region" required>
+<option value="">Выберите область</option>
+<option>Акмолинская область</option>
+<option>Актюбинская область</option>
+<option>Алматинская область</option>
+<option>Атырауская область</option>
+<option>Восточно-Казахстанская область</option>
+<option>Жамбылская область</option>
+<option>Западно-Казахстанская область</option>
+<option>Карагандинская область</option>
+<option>Костанайская область</option>
+<option>Кызылординская область</option>
+<option>Мангистауская область</option>
+<option>Павлодарская область</option>
+<option>Северо-Казахстанская область</option>
+<option>Туркестанская область</option>
+<option>Улытауская область</option>
+<option>Абайская область</option>
+<option>Жетысуская область</option>
+</select>
+<label>Имя или никнейм</label>
+<input type="text" name="username" required>
+<label>Примерный объём (кг)</label>
+<input type="number" name="volume" required>
+<label>Тип отходов</label>
+<input type="text" name="waste" placeholder="Например: пластик, стекло">
+<label>Фото отходов</label>
+<input type="file">
+<button class="submit-button">Отправить заявку</button>
+</form>
+</div>
+
+<!-- Форма приёмщика -->
+<div id="form-company" class="card hidden">
+<h2>Регистрация приёмщика / ИП</h2>
+<form action="company-cabinet.html" method="get">
+<label>Название компании</label>
+<input type="text" name="companyname" required>
+<label>Область работы</label>
+<select name="region" required>
+<option value="">Выберите область</option>
+<option>Акмолинская область</option>
+<option>Актюбинская область</option>
+<option>Алматинская область</option>
+<option>Атырауская область</option>
+<option>Восточно-Казахстанская область</option>
+<option>Жамбылская область</option>
+<option>Западно-Казахстанская область</option>
+<option>Карагандинская область</option>
+<option>Костанайская область</option>
+<option>Кызылординская область</option>
+<option>Мангистауская область</option>
+<option>Павлодарская область</option>
+<option>Северо-Казахстанская область</option>
+<option>Туркестанская область</option>
+<option>Улытауская область</option>
+<option>Абайская область</option>
+<option>Жетысуская область</option>
+</select>
+<label>Телефон</label>
+<input type="tel" name="phone" required>
+<label>Email</label>
+<input type="email" name="email" required>
+<button class="submit-button">Зарегистрироваться</button>
+</form>
+</div>
+
+</div>
+</body>
+</html>
